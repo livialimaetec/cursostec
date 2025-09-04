@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Técnicos - Etec Darcy Pereira de Moraes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        :root {
+            --dark-bg: #0D0D0D;
+            --card-bg: #1A1A1A;
+            --accent: #0468BF;
+            --accent-light: #6575A6;
+            --text: #F2F2F2;
+            --text-secondary: #D5D7F2;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            height: 50vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(Fundo.jpg);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #D5D7F2, #6575A6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, var(--accent), #323C59);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(3, 104, 191, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(3, 104, 191, 0.5);
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        main {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .courses-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .course {
+            background: linear-gradient(145deg, #151515, #1c1c1c);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .course:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(3, 104, 191, 0.2);
+            border-color: var(--accent-light);
+        }
+        
+        .course-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .course-image:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(13, 13, 13, 0.9), transparent);
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course:hover .course-image img {
+            transform: scale(1.05);
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course h2 {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .course h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .course p {
+            line-height: 1.7;
+            margin: 20px 0;
+            color: var(--text-secondary);
+        }
+        
+        .details-btn {
+            background: linear-gradient(135deg, var(--accent-light), #323C59);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .details-btn:hover {
+            background: linear-gradient(135deg, #54638c, #2a3450);
+            transform: translateX(5px);
+        }
+        
+        .details-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .details-btn:hover i {
+            transform: rotate(90deg);
+        }
+        
+        .course-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: linear-gradient(to right, #151515, #1e1e1e);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .course-details.active {
+            max-height: 300px;
+        }
+        
+        .details-content {
+            padding: 20px;
+        }
+        
+        .details-content p {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .details-content i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .details-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        footer {
+            background: linear-gradient(to right, #0a0a0a, #151515);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid #2a2a2a;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #6575A6;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content p {
+                font-size: 1rem;
+            }
+            
+            .courses-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .course {
+                max-width: 100%;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Efeito de partículas no header */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(101, 117, 166, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Animação de digitação no título */
+        .typing-effect {
+            overflow: hidden;
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent) }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="particles" id="particles"></div>
+        <div class="header-content">
+            <h1><span class="typing-effect">Cursos Técnicos de Tecnologia</span></h1>
+            <p>Etec Darcy Pereira de Moraes - Itapetininga/SP</p>
+            <a href="#main-content" class="btn">Veja mais <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </header>
+    
+    <main id="main-content">
+        <h2 class="section-title">Nossos Cursos</h2>
+        <div class="courses-container">
+            <!-- Curso de Informática para Internet -->
+            <div class="course">
+                <div class="course-image">
+                    <img src="info.jpg" alt="Curso de Informática para Internet">
+                </div>
+                <div class="course-content">
+                    <h2>Informática para Internet</h2>
+                    <p>O técnico em Informática para Internet cria e mantém sites e aplicativos web, integrando design, banco de dados e programação para a internet.</p>
+                    <button class="details-btn">Detalhes <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="course-details">
+                    <div class="details-content">
+                        <p><i class="fas fa-clock"></i> <strong>Período:</strong> Tarde</p>
+                        <p><i class="fas fa-calendar-alt"></i> <strong>Duração:</strong> 3 anos</p>
+                        <p><i class="fas fa-briefcase"></i> <strong>Áreas de Atuação:</strong> Desenvolvimento Web, E-commerce, Marketing Digital, Suporte Técnico.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Curso de Desenvolvimento de Sistemas -->
+            <div class="course">
+                <div class="course-image">
+                    <img src="ds.jpg" alt="Curso de Desenvolvimento de Sistemas">
+                </div>
+                <div class="course-content">
+                    <h2>Desenvolvimento de Sistemas</h2>
+                    <p>O técnico em Desenvolvimento de Sistemas projeta, codifica e implementa sistemas computacionais, solucionando problemas e automatizando processos em diversas áreas.</p>
+                    <button class="details-btn">Detalhes <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="course-details">
+                    <div class="details-content">
+                        <p><i class="fas fa-moon"></i> <strong>Período:</strong> Noite</p>
+                        <p><i class="fas fa-calendar-alt"></i> <strong>Duração:</strong> 3 anos</p>
+                        <p><i class="fas fa-briefcase"></i> <strong>Áreas de Atuação:</strong> Programação, Análise de Sistemas, Banco de Dados, Qualidade de Software.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">ETEC DARCY PEREIRA</div>
+        
+            
+            <div class="copyright">
+                <p>© 2025 Etec Darcy Pereira de Moraes - Itapetininga/SP </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const detailsButtons = document.querySelectorAll('.details-btn');
+            
+            detailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const details = this.parentElement.nextElementSibling;
+                    details.classList.toggle('active');
+                    
+                    
+                    if (details.classList.contains('active')) {
+                        this.innerHTML = 'Ocultar <i class="fas fa-chevron-up"></i>';
+                    } else {
+                        this.innerHTML = 'Detalhes <i class="fas fa-chevron-right"></i>';
+                    }
+                });
+            });
+            
+            
+            document.querySelector('.btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+            
+           
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 50;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                   
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    
+                   
+                    const size = Math.random() * 4 + 1;
+                    
+                   
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+                    
+                    
+                    particle.style.animation = `float ${Math.random() * 10 + 5}s infinite ease-in-out`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+                
+               
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes float {
+                        0%, 100% { transform: translate(0, 0); }
+                        25% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+                        50% { transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px); }
+                        75% { transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            createParticles();
+        });
+    </script>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>
